@@ -24,10 +24,13 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Hello</td>
-                <td>Hello</td>
-            </tr>
+            <% shortURLs.forEach(shortURL => { %>
+                <tr>
+                    <td><a href="<%= shortURL.full %> "><%= shortURL.full %></a></td>
+                    <td><a href="<%= shortURL.short %> "><%= shortURL.short %></a></td>
+                </tr>
+           <% }); %> 
+            
         </tbody>
     </table>
 </div>

@@ -11,14 +11,21 @@ mongoose.connect('mongodb://localhost/urlShortener',{
 });
 app.listen(process.env.PORT || 3000);
 
-app.get('/',(req,res) => {
-    res.render("index.ejs");
+app.get('/',async (req,res) => {
+    const shortURLs = await shortURL.find();
+    res.render('index',{shortURLs:shortURLs})
 })
-
 app.post('/shortURLs',async (req,res) => {
     await shortURL.create({
         full:req.body.fullURL
     })
     res.redirect('/')
-    res.end("worked fine");
 });
+
+app.get('/:shortUrl',async (req,res) => {
+    const shortUrl = await shortURL.findOne({short: req.params.shortUrl})
+    console.log(shortUrl.full);
+    if(shortUrl === null || shortUrl === undefined) res.end("Sorry couldn't find the URL");
+
+    res.redirect(shortUrl.full);
+})
