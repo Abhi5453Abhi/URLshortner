@@ -6,7 +6,7 @@ const app = express();
 app.set('view engine' ,'ejs');
 app.use(express.urlencoded({extended:false}))
 
-mongoose.connect('mongodb://localhost/urlShortener',{
+mongoose.connect("mongodb+srv://Mango_OP:Jasveen@2020@cluster0.n48fr.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",{
     useNewUrlParser:true, useUnifiedTopology:true
 });
 app.listen(process.env.PORT || 3000);
