@@ -12,10 +12,6 @@ mongoose.connect("mongodb+srv://Mango_OP:Jasveen@2020@cluster0.n48fr.mongodb.net
 app.listen(process.env.PORT || 3000);
 
 app.get('/',async (req,res) => {
-    res.end("Started");
-})
-
-app.get('/',async (req,res) => {
     const shortURLs = await shortURL.find();
     res.render('index',{shortURLs:shortURLs})
 })
